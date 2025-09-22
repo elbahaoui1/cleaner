@@ -34,7 +34,8 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("/api/order error", err);
     return NextResponse.json({ error: "حدث خطأ" }, { status: 500 });
   }
 }
