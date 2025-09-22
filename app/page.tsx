@@ -25,8 +25,9 @@ export default function Home() {
       });
       if (!res.ok) throw new Error("فشل إرسال الطلب");
       window.location.href = "/success";
-    } catch (err: any) {
-      setError(err.message || "حدث خطأ غير متوقع");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "حدث خطأ غير متوقع";
+      setError(message);
     } finally {
       setSubmitting(false);
     }

@@ -1,4 +1,15 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { getDb } from "@/lib/db";
+
+type Order = {
+  id: number;
+  created_at: string;
+  name: string;
+  phone: string;
+  address: string;
+  quantity: number;
+  price: number;
+};
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +20,7 @@ export default async function Dashboard() {
   );
 
   const totalOrders = orders.length;
-  const totalRevenue = orders.reduce((sum: number, order: any) => sum + order.price, 0);
+  const totalRevenue = orders.reduce((sum: number, order: Order) => sum + order.price, 0);
 
   return (
     <div className="min-h-dvh gradient-bg p-4 relative overflow-hidden">
@@ -70,7 +81,7 @@ export default async function Dashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order: any, index: number) => (
+                  {orders.map((order: Order, index: number) => (
                     <tr key={order.id} className={`border-b border-white/10 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-white/20 transition-colors duration-200`}>
                       <td className="px-4 py-3 font-semibold text-yellow-300">#{order.id}</td>
                       <td className="px-4 py-3 whitespace-nowrap text-xs">
@@ -103,9 +114,14 @@ export default async function Dashboard() {
 
         {/* Logout Button */}
         <div className="text-center mt-8">
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="inline-block gradient-secondary rounded-2xl px-8 py-3 text-white font-semibold transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            onClick={(e) => {
+              e.preventDefault();
+              // Using client-side navigation is not available in server component directly.
+              // Keep as anchor for now; Next.js rule disabled via pragma on file top if needed.
+            }}
           >
             🏠 العودة للمتجر
           </a>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Success() {
   return (
     <div className="min-h-dvh gradient-bg flex items-center justify-center p-6 text-center relative overflow-hidden">
@@ -28,12 +30,12 @@ export default function Success() {
             </div>
           </div>
           
-          <a 
-            href="/" 
+          <Link
+            href="/"
             className="inline-block gradient-secondary rounded-2xl px-8 py-4 text-lg font-bold transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
           >
             🏠 العودة للصفحة الرئيسية
-          </a>
+          </Link>
           
           <p className="text-xs opacity-80 mt-6">شكراً لثقتك في متجر زينة</p>
         </div>
