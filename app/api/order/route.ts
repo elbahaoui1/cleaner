@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
 
@@ -27,11 +27,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "العدد غير مدعوم" }, { status: 400 });
     }
 
-    const db = await getDb();
-    await db.run(
-      `INSERT INTO orders (name, phone, address, quantity, price) VALUES (?, ?, ?, ?, ?)`,
-      [name, phone, address, quantity, price]
-    );
+    await prisma.order.create({
+      data: { name, phone, address, quantity, price },
+    });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

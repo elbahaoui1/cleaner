@@ -1,9 +1,9 @@
-import { getDb } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 type Order = {
   id: number;
-  created_at: string;
+  createdAt: string | Date;
   name: string;
   phone: string;
   address: string;
@@ -14,10 +14,11 @@ type Order = {
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
-  const db = await getDb();
-  const orders = await db.all(
-    `SELECT id, created_at, name, phone, address, quantity, price FROM orders ORDER BY id DESC LIMIT 500`
-  );
+  const orders = await prisma.order.findMany({
+    orderBy: { id: "desc" },
+    take: 500,
+    select: { id: true, createdAt: true, name: true, phone: true, address: true, quantity: true, price: true },
+  });
 
   const totalOrders = orders.length;
   const totalRevenue = orders.reduce((sum: number, order: Order) => sum + order.price, 0);
@@ -85,7 +86,7 @@ export default async function Dashboard() {
                     <tr key={order.id} className={`border-b border-white/10 ${index % 2 === 0 ? 'bg-white/5' : 'bg-white/10'} hover:bg-white/20 transition-colors duration-200`}>
                       <td className="px-4 py-3 font-semibold text-yellow-300">#{order.id}</td>
                       <td className="px-4 py-3 whitespace-nowrap text-xs">
-                        {new Date(order.created_at).toLocaleDateString('ar-SA', {
+                        {new Date(order.createdAt).toLocaleDateString('ar-SA', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',

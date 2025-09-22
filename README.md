@@ -27,6 +27,7 @@ ADMIN_PASSWORD=ضع_كلمة_المرور_هنا
 - صفحة هبوط متوافقة مع الهاتف، اختيار الكمية (1/2/3) بأسعار: 169 / 199 / 239 رس
 - صورة المنتج: ضع ملف صورة باسم `product.jpg` داخل مجلد `public/`
 - حفظ الطلبات في SQLite (`data.sqlite` في جذر المشروع)
+- قاعدة البيانات: Prisma + PostgreSQL (ضبط `DATABASE_URL`)
 - لوحة تحكم محمية بكلمة مرور من البيئة (`/admin` للدخول، `/dashboard` للعرض)
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
