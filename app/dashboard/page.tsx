@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import { getDb } from "@/lib/db";
+import Link from "next/link";
 
 type Order = {
   id: number;
@@ -114,17 +114,12 @@ export default async function Dashboard() {
 
         {/* Logout Button */}
         <div className="text-center mt-8">
-          <a
+          <Link
             href="/"
             className="inline-block gradient-secondary rounded-2xl px-8 py-3 text-white font-semibold transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-            onClick={(e) => {
-              e.preventDefault();
-              // Using client-side navigation is not available in server component directly.
-              // Keep as anchor for now; Next.js rule disabled via pragma on file top if needed.
-            }}
           >
             🏠 العودة للمتجر
-          </a>
+          </Link>
         </div>
       </div>
     </div>
