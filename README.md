@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+متجر زينة - صفحة هبوط باللغة العربية مع لوحة تحكم للطلبات (Next.js + SQLite)
 
 ## Getting Started
 
-First, run the development server:
+التشغيل:
 
 ```bash
 npm run dev
@@ -14,9 +14,20 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- أنشئ ملف `.env.local` وضع التالي:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+ADMIN_PASSWORD=ضع_كلمة_المرور_هنا
+```
+
+- شغل الخادم ثم افتح `http://localhost:3000` للمتجر و`/dashboard` للوحة التحكم.
+
+الميزات:
+
+- صفحة هبوط متوافقة مع الهاتف، اختيار الكمية (1/2/3) بأسعار: 169 / 199 / 239 رس
+- صورة المنتج: ضع ملف صورة باسم `product.jpg` داخل مجلد `public/`
+- حفظ الطلبات في SQLite (`data.sqlite` في جذر المشروع)
+- لوحة تحكم محمية بكلمة مرور من البيئة (`/admin` للدخول، `/dashboard` للعرض)
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
